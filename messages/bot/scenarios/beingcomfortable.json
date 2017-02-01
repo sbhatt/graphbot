@@ -1,0 +1,64 @@
+{
+  "id": "beingcomfortable",
+  "type": "sequence",
+  "steps": [
+    {
+      "id": "beingcomfortableMsg1",
+      "type": "text",
+      "data": { "text": "For getting to work in comfort, I'd recommend" }
+    },
+    {
+      "id": "beingcomfortableMsg2",
+      "type": "carousel",
+      "data": {
+          "text": "",
+          "cards": [
+          {
+            "id": "2017Highlander",
+            "type": "heroCard",
+            "data": {
+              "title": "2017 Highlander",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/2017Highlander.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Explore",
+                  "action": "openUrl",
+                  "value": "http://www.toyota.com/highlander/"
+                },
+                {
+                  "label": "Build",
+                  "action": "openUrl",
+                  "value": "http://www.toyota.com/configurator/#!/build/step/model/year/2017/series/highlander"
+                }
+              ]
+            }
+          },
+          {
+            "id": "2017AvalonHybrid",
+            "type": "heroCard",
+            "data": {
+              "title": "2017 Avalon Hybrid",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/BeingEfficient.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Explore",
+                  "action": "openUrl",
+                  "value": "http://www.toyota.com/avalonhybrid/"
+                },
+                {
+                  "label": "Build",
+                  "action": "openUrl",
+                  "value": "http://www.toyota.com/configurator/#!/build/step/model/year/2017/series/avalonhybrid"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }      
+  ]
+}

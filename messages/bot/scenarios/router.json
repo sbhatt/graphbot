@@ -32,6 +32,10 @@
         {
           "condition": "scenarioIntent.intent == 'going_to_the_office'",
           "steps": [ { "subScenario": "goingtotheoffice"}]
+        },
+        {
+          "condition": "scenarioIntent.intent == 'being_comfortable'",
+          "steps": [ { "subScenario": "beingcomfortable"}]
         }
       ]
     }

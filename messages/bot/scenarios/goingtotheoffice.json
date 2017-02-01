@@ -3,17 +3,17 @@
   "type": "sequence",
   "steps": [
     {
-      "id": "offtoworkMsg1",
+      "id": "goingtotheoffice1",
       "type": "text",
       "data": { "text": "Perfect! Let's get you to work" }
     },
     {
-      "id": "offtoworkMsg2",
+      "id": "goingtotheoffice2",
       "type": "text",
       "data": { "text": "So what's most important about making your trip?" }
     },
     {
-      "id": "offtoworkMsg3",
+      "id": "goingtotheoffice3",
       "type": "carousel",
       "data": {
           "text": "",
