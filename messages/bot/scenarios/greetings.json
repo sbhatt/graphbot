@@ -8,34 +8,27 @@
       "data": { "text": "Hello" }
     },
     {
-      "id": "greetings",
-      "type": "sequence",
-      "steps": [
+      "id": "greetingsMsg2",
+      "type": "prompt",
+      "data": { 
+        "type": "choice",
+        "text": "I’m here to help you find your perfect Toyota. Ready to get started?",
+        "options":  [ "Yes", "May be later"],
+        "config": {
+          "listStyle": "button"
+        }
+      },
+      "varname": "greetingSelectedOption",
+      "scenarios": [
         {
-          "id": "greetingsMsg1",
-          "type": "text",
-          "data": { "text": "Hello" }
+          "condition": "greetingSelectedOption == 'Yes'",
+          "steps": [ { "subScenario": "getstarted"}]
         },
         {
-          "id": "greetingsMsg2",
-          "type": "heroCard",
-          "data": {
-            "text": "I’m here to help you find your perfect Toyota. Ready to get started?",
-            "buttons": [
-              {
-                "label": "Yes",
-                "action": "imBack",
-                "value": "yes"
-              },
-              {
-                "label": "May be later",
-                "action": "imBack",
-                "value": "may be later"
-              }
-            ]
-          }
-        }   
-      ]  
+          "condition": "greetingSelectedOption == 'May be later'",
+          "steps": [ { "subScenario": "maybelater"}]
+        }
+      ]
     }
   ]  
 }
