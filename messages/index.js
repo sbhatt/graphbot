@@ -36,7 +36,7 @@ bot.dialog('/', intents);
 //Facebook Thread Settings
 //========================================
 
-utilfunctions.facebook_thread_setting.greeting('Hello!  I will help you find the best car for you.');
+/*utilfunctions.facebook_thread_setting.greeting('Hello!  I will help you find the best car for you.');
 utilfunctions.facebook_thread_setting.get_started('Hello');
 utilfunctions.facebook_thread_setting.menu([{
     "type": "postback",
@@ -50,13 +50,8 @@ utilfunctions.facebook_thread_setting.menu([{
     "type": "web_url",
     "title": "Toyota Website",
     "url": "http://www.toyota.com/"
-}, ]);
+}, ]);*/
 
-// intents.matches(/^(help|hi|hello)/i, [
-//   function (session) {
-//     session.send('Hi, how can I help you?');
-//   }
-// ]);
 
 
 GraphDialog
