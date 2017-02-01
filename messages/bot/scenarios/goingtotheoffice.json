@@ -1,0 +1,76 @@
+{
+  "id": "goingtotheoffice",
+  "type": "sequence",
+  "steps": [
+    {
+      "id": "offtoworkMsg1",
+      "type": "text",
+      "data": { "text": "Perfect! Let's get you to work" }
+    },
+    {
+      "id": "offtoworkMsg2",
+      "type": "text",
+      "data": { "text": "So what's most important about making your trip?" }
+    },
+    {
+      "id": "offtoworkMsg3",
+      "type": "carousel",
+      "data": {
+          "text": "",
+          "cards": [
+          {
+            "id": "beingcomfortable",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/BeingComfortable.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Being Comfortable",
+                  "action": "imBack",
+                  "value": "Being Comfortable"
+                }
+              ]
+            }
+          },
+          {
+            "id": "beingefficient",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/BeingEfficient.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Being Efficient",
+                  "action": "imBack",
+                  "value": "Being Efficient"
+                }
+              ]
+            }
+          },
+            {
+            "id": "beingeconomical",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/BeingEconomical.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Being Economical",
+                  "action": "imBack",
+                  "value": "Being Economical"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }      
+  ]
+}

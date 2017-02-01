@@ -1,0 +1,59 @@
+{
+  "id": "offtowork",
+  "type": "sequence",
+  "steps": [
+    {
+      "id": "offtoworkMsg1",
+      "type": "text",
+      "data": { "text": "Ok, time to find a way to get you there!" }
+    },
+    {
+      "id": "offtoworkMsg2",
+      "type": "text",
+      "data": { "text": "How do you plan to use your vehicle?" }
+    },
+    {
+      "id": "offtoworkMsg3",
+      "type": "carousel",
+      "data": {
+          "text": "",
+          "cards": [
+          {
+            "id": "commutingtowork",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/Commutingtowork.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Commuting to Work",
+                  "action": "imBack",
+                  "value": "Commuting to Work"
+                }
+              ]
+            }
+          },
+          {
+            "id": "gettingworkdone",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/Gettingworkdone.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Getting work done",
+                  "action": "imBack",
+                  "value": "Getting work done"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }      
+  ]
+}

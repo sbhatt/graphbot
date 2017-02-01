@@ -1,0 +1,59 @@
+{
+  "id": "commutingtowork",
+  "type": "sequence",
+  "steps": [
+    {
+      "id": "commutingtoworkMsg1",
+      "type": "text",
+      "data": { "text": "Let's make it an enjoyable drive." }
+    },
+    {
+      "id": "commutingtoworkMsg2",
+      "type": "text",
+      "data": { "text": "Where are you headed every day?" }
+    },
+    {
+      "id": "commutingtoworkMsg3",
+      "type": "carousel",
+      "data": {
+          "text": "",
+          "cards": [
+          {
+            "id": "goingtotheoffice",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/Goingtotheoffice.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Going to the office",
+                  "action": "imBack",
+                  "value": "Going to the office"
+                }
+              ]
+            }
+          },
+          {
+            "id": "goingtoschool",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/Goingtoschool.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Going to school",
+                  "action": "imBack",
+                  "value": "Going to school"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }      
+  ]
+}

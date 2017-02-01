@@ -1,0 +1,16 @@
+{
+  "id": "maybelater",
+  "type": "sequence",
+  "steps": [
+    {
+      "id": "maybelaterMsg1",
+      "type": "text",
+      "data": { "text": "Sounds good! Check back when you're ready to dive in." }
+    },
+    {
+      "id": "maybelaterMsg2",
+      "type": "text",
+      "data": { "text": "Cool. Chat with you soon"}
+    }
+  ]
+}

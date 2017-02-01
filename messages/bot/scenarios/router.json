@@ -1,0 +1,45 @@
+{
+  "id": "router",
+  "type": "sequence",
+  "steps": [
+    {
+      "id": "scenarioIntent",
+      "type": "score",
+      "data": { 
+        "models": [ "dialog-router" ]
+      },
+      "scenarios": [
+        {
+          "condition": "scenarioIntent.intent == 'Greeting'",
+          "steps": [ { "subScenario": "greetings" } ]
+        },
+        {
+          "condition": "scenarioIntent.intent == 'Yes'",
+          "steps": [ { "subScenario": "getStarted"}]
+        },
+        {
+          "condition": "scenarioIntent.intent == 'may_be_later'",
+          "steps": [ { "subScenario": "maybelater"}]
+        },
+        {
+          "condition": "scenarioIntent.intent == 'off_to_work'",
+          "steps": [ { "subScenario": "off_to_work"}]
+        },
+        {
+          "condition": "scenarioIntent.intent == 'commuting_to_work'",
+          "steps": [ { "subScenario": "commutingtowork"}]
+        },
+        {
+          "condition": "scenarioIntent.intent == 'going_to_the_office'",
+          "steps": [ { "subScenario": "goingtotheoffice"}]
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "name": "dialog-router",
+      "url": "https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/de69bc89-856d-446b-85ac-03adb848a2a4?subscription-key=1a1df6e10ac446d5b596d993bca258ae&verbose=true&q="
+    }    
+  ]
+}

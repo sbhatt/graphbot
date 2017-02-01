@@ -1,0 +1,76 @@
+{
+ 	"id": "getStarted",
+	"type": "sequence",
+  "steps": [
+  	{
+    	"id": "yesStartMsg1",
+        "type": "text",
+        "data": { "text": "We'll start with an easy one." }
+    },
+    {
+    	"id": "yesStartMsg2",
+        "type": "text",
+         "data": { "text": "Where are you headed?" }
+    },
+    {
+    	"id": "yesStartMsg3",
+        "type": "carousel",
+        "data": {
+          "text": "",
+          "cards": [
+          {
+            "id": "offtowork",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/OfftoWork.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Off to Work",
+                  "action": "imBack",
+                  "value": "Off to Work"
+                }
+              ]
+            }
+          },
+          {
+            "id": "OutwithFamily",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/OutwithFamily.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "Out with Family",
+                  "action": "imBack",
+                  "value": "Out with Family"
+                }
+              ]
+            }
+          },
+          {
+            "id": "Onanadventure",
+            "type": "heroCard",
+            "data": {
+              "title": "_",
+              "images": [
+                "https://testfbbotue4agf.blob.core.windows.net/images/OnanAdventure.jpg"
+              ],
+              "buttons": [
+                {
+                  "label": "OnanAdventure",
+                  "action": "imBack",
+                  "value": "On an Adventure"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
