@@ -7,7 +7,7 @@ var path = require('path');
 var BotGraphDialog = require('bot-graph-dialog');
 var config = require('./config');
 var fs = require('fs');
-var utilfunctions = require('./utilfunctions');
+//var utilfunctions = require('./utilfunctions');
 
 var GraphDialog = BotGraphDialog.GraphDialog;
 var useEmulator = (process.env.NODE_ENV == 'development');
