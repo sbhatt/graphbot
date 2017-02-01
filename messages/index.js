@@ -7,6 +7,7 @@ var path = require('path');
 var BotGraphDialog = require('bot-graph-dialog');
 var config = require('./config');
 var fs = require('fs');
+var utilfunctions = require('./utilfunctions');
 
 var GraphDialog = BotGraphDialog.GraphDialog;
 var useEmulator = (process.env.NODE_ENV == 'development');
@@ -31,6 +32,25 @@ var scenariosPath = path.join(__dirname, 'bot', 'scenarios');
 var handlersPath = path.join(__dirname, 'bot', 'handlers');
 
 bot.dialog('/', intents);
+//========================================
+//Facebook Thread Settings
+//========================================
+
+utilfunctions.facebook_thread_setting.greeting('Hello!  I will help you find the best car for you.');
+utilfunctions.facebook_thread_setting.get_started('Hello');
+utilfunctions.facebook_thread_setting.menu([{
+    "type": "postback",
+    "title": "Explore Categories",
+    "payload": "categories"
+}, {
+    "type": "postback",
+    "title": "Find my match",
+    "payload": "Find my match"
+}, {
+    "type": "web_url",
+    "title": "Toyota Website",
+    "url": "http://www.toyota.com/"
+}, ]);
 
 // intents.matches(/^(help|hi|hello)/i, [
 //   function (session) {
