@@ -1,22 +1,28 @@
+"use strict";
+
+var builder = require('botbuilder');
+var lodash = require('lodash');
+var botbuilder_azure = require("botbuilder-azure");
 var path = require('path');
-var express = require('express');
-global.builder = require('botbuilder');
-global.lodash = require('lodash');
 var BotGraphDialog = require('bot-graph-dialog');
 var config = require('./config');
 var fs = require('fs');
 
 var GraphDialog = BotGraphDialog.GraphDialog;
-var port = process.env.PORT || 3978;
-var app = express();
+var useEmulator = (process.env.NODE_ENV == 'development');
+//var port = process.env.PORT || 3978;
+//var app = express();
 
-var microsoft_app_id = config.get('MICROSOFT_APP_ID');
-var microsoft_app_password = config.get('MICROSOFT_APP_PASSWORD');
+var microsoft_app_id = process.env['MicrosoftAppId'];//config.get('MICROSOFT_APP_ID');
+var microsoft_app_password = process.env['MicrosoftAppPassword'];//config.get('MICROSOFT_APP_PASSWORD');
 
-var connector = new builder.ChatConnector({
-    appId: microsoft_app_id,
-    appPassword: microsoft_app_password,
-  });
+var connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
+    appId: process.env['MicrosoftAppId'],
+    appPassword: process.env['MicrosoftAppPassword'],
+    stateEndpoint: process.env['BotStateEndpoint'],
+    openIdMetadata: process.env['BotOpenIdMetadata']
+});
+
   
 var bot = new builder.UniversalBot(connector);
 var intents = new builder.IntentDialog();     
@@ -26,46 +32,24 @@ var handlersPath = path.join(__dirname, 'bot', 'handlers');
 
 bot.dialog('/', intents);
 
-// intents.matches(/^(hi|hello|hey)/i, [
+// intents.matches(/^(help|hi|hello)/i, [
 //   function (session) {
-//     session.send('Hello?');
+//     session.send('Hi, how can I help you?');
 //   }
 // ]);
 
-// dynamically load dialogs from external datasource
-// create a GraphDialog for each and bind it to the intents object
-loadDialogs()
-  .then(dialogs => {
-    for (var i=0; i<dialogs.length; i++) {
-  
-      ((dialog) => {
-        console.log(`loading scenario: ${dialog.scenario} for regex: ${dialog.regex}`);
-       
-        var re = new RegExp(dialog.regex, 'i');
-        intents.matches(re, [
-          function (session) {
-            console.log("dialog path"+dialog.path);
-            session.beginDialog(dialog.path, {});
-          }
-        ]);
 
-        GraphDialog
-          .fromScenario({ 
-            bot,
-            scenario: dialog.scenario, 
-            loadScenario, 
-            loadHandler,
-            customTypeHandlers: getCustomTypeHandlers()
-          })
-          .then(graphDialog => {
-            bot.dialog(dialog.path, graphDialog.getDialog());
-            console.log(`graph dialog loaded successfully: scenario ${dialog.scenario} for regExp: ${dialog.regex}`);
-          })
-          .catch(err => { console.error(`error loading dialog: ${err.message}`); });
-      })(dialogs[i]);
-    }
+GraphDialog
+  .fromScenario({ 
+    bot,
+    scenario: 'router', 
+    loadScenario, 
+    loadHandler,
+    customTypeHandlers: getCustomTypeHandlers()
   })
-  .catch(err => console.error(`error loading dialogs dynamically: ${err.message}`));
+  .then(graphDialog => intents.onDefault(graphDialog.getDialog()))
+  .catch(err => console.error(`error loading dialog: ${err.message}`));
+
 
 // this allows you to extend the json with more custom node types, 
 // by providing your implementation to processing each custom type.
@@ -92,7 +76,6 @@ function loadScenario(scenario) {
     console.log('loading scenario', scenario);
     // implement loadScenario from external datasource.
     // in this example we're loading from local file
-    console.log(scenariosPath+"---------"+scenario);
     var scenarioPath = path.join(scenariosPath, scenario + '.json');
     
     return fs.readFile(scenarioPath, 'utf8', (err, content) => {
@@ -138,34 +121,18 @@ function loadHandler(handler) {
   });
 }
 
-// this is the handler for loading scenarios from external datasource
-// in this implementation we're just reading it from the file scnearios/dialogs.json
-// but it can come from any external datasource like a file, db, etc.
-function loadDialogs() {
-  return new Promise((resolve, reject) => {
-    console.log('loading dialogs');
+if (useEmulator) {
+    var express = require('express');
+    var port = process.env.PORT || 3978;
+    var app = express();
+    app.post('/api/messages', connector.listen());
 
-    var dialogsPath = path.join(scenariosPath, "dialogs.json");
-    return fs.readFile(dialogsPath, 'utf8', (err, content) => {
-      if (err) {
-        console.error("error loading json: " + dialogsPath);
-        return reject(err);
-      }
-
-      var dialogs = JSON.parse(content);
-
-      // simulating long load period
-      setTimeout(() => {
-        console.log('resolving dialogs', dialogsPath);
-        resolve(dialogs.dialogs);
-      }, Math.random() * 3000);
-    });  
-  });
+    app.listen(port, function () {
+      console.log('listening on port %s', port);
+    });
+        
+} else {
+    module.exports = { default:  connector.listen()}
 }
 
-app.post('/api/messages', connector.listen());
-
-app.listen(port, function () {
-  console.log('listening on port %s', port);
-});
 
